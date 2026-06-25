@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>专题 · 绿茵回响</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+      background: #eceef0;
+      color: #2e3b4e;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* 首屏横幅 — 杂志感大图区 */
+    .hero {
+      background: linear-gradient(145deg, #d0d9e0, #e6ebef);
+      border-radius: 32px;
+      padding: 2.8rem 2.5rem 2.2rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 12px 24px -8px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255,255,255,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "⚽";
+      position: absolute;
+      right: -16px;
+      bottom: -30px;
+      font-size: 14rem;
+      opacity: 0.03;
+      pointer-events: none;
+      transform: rotate(-10deg);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #1a2a3a;
+      margin-bottom: 0.6rem;
+    }
+    .hero .sub {
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: #4b5b6f;
+      border-left: 3px solid #62748b;
+      padding-left: 1.2rem;
+      margin: 0.8rem 0 1.6rem 0;
+      max-width: 60%;
+    }
+    .hero .meta-line {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: #54667b;
+      border-top: 1px solid #cbd5de;
+      padding-top: 1.4rem;
+      margin-top: 0.6rem;
+    }
+    .hero .meta-line span {
+      background: #d9e0e8;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+    }
+
+    /* 卡片式分区 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+    .card {
+      background: #fafbfc;
+      border-radius: 24px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.01);
+      border: 1px solid #e4e9ef;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 10px 22px -6px rgba(0,20,40,0.08);
+    }
+    .card h2 {
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #1f2e3f;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .card p {
+      margin-bottom: 1rem;
+      color: #3d4c5e;
+      font-size: 1.02rem;
+    }
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 数据感小标 */
+    .stat-badge {
+      display: inline-block;
+      background: #e7edf3;
+      border-radius: 30px;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      color: #3a4c61;
+      border: 1px solid #d5dee7;
+      margin-right: 0.5rem;
+    }
+
+    /* FAQ 摘要式窄卡片 */
+    .faq-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem 3rem;
+      background: #f4f6f9;
+      padding: 1.8rem 2.2rem;
+      border-radius: 28px;
+      border: 1px solid #dfe5ec;
+      margin: 1.8rem 0 2.5rem;
+    }
+    .faq-mini div {
+      flex: 1 1 200px;
+    }
+    .faq-mini h4 {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #1a2c3d;
+      margin-bottom: 0.3rem;
+      position: relative;
+      padding-left: 1.4rem;
+    }
+    .faq-mini h4::before {
+      content: "◌";
+      position: absolute;
+      left: 0;
+      color: #7d8fa6;
+    }
+    .faq-mini p {
+      font-size: 0.9rem;
+      color: #4a5b70;
+      line-height: 1.5;
+    }
+
+    /* 页尾 */
+    .footer-note {
+      margin-top: 3rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid #d7dee7;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      color: #4b5f76;
+      font-size: 0.95rem;
+    }
+    .footer-note a {
+      color: #1f3a57;
+      text-decoration: none;
+      border-bottom: 1px solid #b8c8db;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-note a:hover {
+      border-bottom-color: #2b4a6a;
+      color: #0c1f30;
+    }
+    .footer-note .dot {
+      opacity: 0.4;
+      padding: 0 0.6rem;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 700px) {
+      body { padding: 1rem; }
+      .hero { padding: 2rem 1.5rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero .sub { max-width: 90%; font-size: 1rem; }
+      .card { padding: 1.8rem 1.5rem; }
+      .faq-mini { padding: 1.5rem; }
+      .footer-note { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .hero .meta-line { flex-direction: column; gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 首屏杂志横幅 -->
+  <header class="hero">
+    <h1>绿茵回响 · 四年一章</h1>
+    <div class="sub">从多哈的冬夜到北美大陆的盛夏，足球在时区之间流转，故事从未中断。</div>
+    <div class="meta-line">
+      <span>专题 · 记忆与展望</span>
+      <span>⚽ 2026 倒计时</span>
+      <span>阅读时长 4 分钟</span>
+    </div>
+  </header>
+
+  <!-- 三段自然介绍 (杂志专题) -->
+  <section class="card-grid">
+
+    <div class="card">
+      <h2>01 · 草皮上的编年史</h2>
+      <p><span class="stat-badge">FIFA World Cup</span> 每届世界杯都会留下独有的时代烙印。从马拉卡纳的欢呼到柏林夏夜的烟火，从桑巴足球到团队机器的崛起，这项赛事一直在重新定义竞技的边界。2026 年，赛事将首次由三国联合举办，横跨美国、加拿大与墨西哥，赛程与文化的多样性将前所未有。</p>
+      <p>在这个时间节点，许多球迷已经开始构思自己的观赛路线，或是重温过往那些逆转、点球与绝杀的瞬间。一届杯赛不仅属于冠军，也属于每一个在屏幕前或看台上心跳加速的人。</p>
+    </div>
+
+    <div class="card">
+      <h2>02 · 新大陆，新节奏</h2>
+      <p>北美大陆拥有辽阔的时区、多元的移民社群以及成熟的体育场馆网络。2026 年世界杯的筹备已进入实质性阶段：从西雅图的现代球场到墨西哥城的阿兹特克体育场，每个承办城市都在用自己的方式迎接这场盛宴。</p>
+      <p>除了场地与交通，球迷文化也是一大看点。北美的体育传统更强调家庭氛围与现场体验，你可以想象在洛杉矶的日落中看完小组赛，再驱车数小时前往另一个州感受截然不同的助威风格。足球正在这片土地上扎根，而世界杯恰好是它最有力的生长剂。</p>
+    </div>
+
+    <div class="card">
+      <h2>03 · 故事发生在场外</h2>
+      <p>真正让一届世界杯变得特别的，往往不只是进球和积分。一次偶遇的街头足球赛，一家挂满各国国旗的酒吧，甚至是某个深夜的跨洋通话——这些片段最终汇成每个人独有的“世界杯记忆”。</p>
+      <p>2026 年，赛事将扩军至 48 支球队，这意味着更多国家将首次站上决赛圈舞台。对于许多小国球迷来说，能够看到自己的队伍与顶级强队交手，本身就比胜负更有意义。而所有这些新故事，都会在赛事之外找到它们的回声。</p>
+    </div>
+  </section>
+
+  <!-- FAQ 摘要风格 (轻量问答) -->
+  <div class="faq-mini">
+    <div>
+      <h4>赛程何时确定？</h4>
+      <p>初步赛程预计在 2025 年底公布，分档与抽签仪式将于 2026 年初举行。关注<a href="https://app-news-fifa2026.com">世界杯</a>资讯平台可及时获取动态。</p>
+    </div>
+    <div>
+      <h4>主办城市有哪些？</h4>
+      <p>共 16 座城市，包括洛杉矶、纽约、墨西哥城、多伦多等，具体球场名单已由组委会确认。</p>
+    </div>
+    <div>
+      <h4>如何规划观赛行程？</h4>
+      <p>建议提前了解签证政策与区域交通，许多旅行平台已推出早鸟套餐。保持对官方渠道的关注最为稳妥。</p>
+    </div>
+  </div>
+
+  <!-- 页尾 + 自然包含链接 -->
+  <footer class="footer-note">
+    <div>
+      <span>专题 · 绿茵回响</span>
+      <span class="dot">·</span>
+      <span>内容独立呈现</span>
+      <span class="dot">·</span>
+      <span>2025</span>
+    </div>
+    <div>
+      <span>更多关于 </span>
+      <a href="https://app-news-fifa2026.com">世界杯</a>
+      <span> 的深度内容持续更新中。</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
