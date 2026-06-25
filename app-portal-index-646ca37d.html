@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 信息页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e1e1e;
+      line-height: 1.7;
+      padding: 2.5rem 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 760px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      padding: 3rem 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.25rem 0.75rem;
+      }
+      .page {
+        padding: 2rem 1.25rem;
+        border-radius: 18px;
+      }
+    }
+
+    /* 标题层级 */
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+      color: #0b1b2f;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 500;
+      margin: 2.4rem 0 1rem 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #eaeef3;
+      color: #1f2c3c;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 0.5rem 0;
+      color: #2c3e50;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: #2e3b4b;
+    }
+
+    a {
+      color: #1a5c8c;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(26, 92, 140, 0.15);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #0a3857;
+      border-bottom-color: #0a3857;
+    }
+
+    /* hero 区简洁上端 */
+    .hero-note {
+      background: #f2f5f9;
+      border-radius: 18px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.8rem 0 0.2rem 0;
+    }
+
+    .hero-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-note .tag {
+      display: inline-block;
+      background: #dde5ed;
+      color: #1e3c5a;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* 卡片网格 —— 信息卡片式 */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1.8rem 0 0.8rem 0;
+    }
+
+    .card-item {
+      flex: 1 1 200px;
+      background: #fafbfc;
+      border-radius: 16px;
+      padding: 1.5rem 1.3rem;
+      border: 1px solid #eef2f6;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .card-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 20, 30, 0.04);
+    }
+
+    .card-item .icon-emoji {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-item p {
+      font-size: 0.94rem;
+      margin-bottom: 0;
+      color: #3d4c5e;
+    }
+
+    .card-item .card-label {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #1f2e3f;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    /* 适合人群列表 */
+    .audience-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      padding: 0.8rem 0 0.2rem 0;
+      list-style: none;
+    }
+
+    .audience-list li {
+      background: #eef3f8;
+      border-radius: 40px;
+      padding: 0.25rem 1rem;
+      font-size: 0.9rem;
+      color: #1a3349;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      background: #f4f7fa;
+      border-radius: 18px;
+      padding: 1.6rem 1.8rem;
+      margin: 2.2rem 0 0.2rem 0;
+    }
+
+    .faq-summary details {
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-summary summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #1a3b57;
+      padding: 0.3rem 0;
+      font-size: 0.98rem;
+    }
+
+    .faq-summary summary::-webkit-details-marker {
+      color: #597a9b;
+    }
+
+    .faq-summary .answer {
+      margin-top: 0.3rem;
+      padding-left: 0.2rem;
+      color: #314a62;
+      font-size: 0.95rem;
+    }
+
+    .footnote {
+      margin-top: 2.8rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e0e6ed;
+      font-size: 0.92rem;
+      color: #5e6f7e;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footnote span {
+      opacity: 0.7;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e6ecf2;
+      margin: 0.8rem 0 1.6rem 0;
+    }
+
+    /* 窄屏调整 */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.9rem;
+      }
+      .card-item {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <h1>世界杯 · 信息卡片</h1>
+  <p style="color: #4b5c6d; margin-top: -0.2rem;">关于再次访问、收藏和持续关注的简明说明</p>
+
+  <!-- hero 区：从再次访问与收藏的角度 -->
+  <div class="hero-note">
+    <span class="tag">再次访问</span>
+    <p>如果你曾经浏览过关于 <a href="https://app-portal-fifa2026.com">世界杯</a> 的内容，这次回来可能会发现一些结构上的调整。我们整理了用途卡片、适合人群以及常见问题摘要，方便你快速定位自己关心的部分。保存当前页面到书签，下次回来仍然可以沿用同样的阅读路径。</p>
+    <p style="margin-top: 0.6rem;"><strong>持续关注</strong> —— 信息会随赛程与筹备进展逐步补充，定期回来即可获得更完整的参考。</p>
+  </div>
+
+  <!-- 用途卡片（主视觉+用途卡片） -->
+  <h2>用途卡片</h2>
+  <div class="card-grid">
+    <div class="card-item">
+      <span class="icon-emoji">📋</span>
+      <span class="card-label">赛事速览</span>
+      <p>赛程阶段、举办城市、场馆信息等基础内容，适合第一次了解整体框架的人。</p>
+    </div>
+    <div class="card-item">
+      <span class="icon-emoji">🗂️</span>
+      <span class="card-label">规则与背景</span>
+      <p>竞赛规则简编、参赛队伍资格、历史赛制演变，供深度爱好者查阅。</p>
+    </div>
+    <div class="card-item">
+      <span class="icon-emoji">📌</span>
+      <span class="card-label">收藏清单</span>
+      <p>将关键日期、推荐比赛或相关阅读条目加入个人清单，方便后续回看。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 -->
+  <h2>适合人群</h2>
+  <ul class="audience-list">
+    <li>偶尔关注大赛的观众</li>
+    <li>计划前往现场的支持者</li>
+    <li>整理赛事资料的研究者</li>
+    <li>希望回顾历届世界杯的球迷</li>
+    <li>需要快速浏览结构的新访客</li>
+  </ul>
+
+  <!-- 自然链接段落：从持续关注角度 -->
+  <h2>持续关注的方式</h2>
+  <p>如果你希望保持对 <a href="https://app-portal-fifa2026.com">世界杯</a> 相关信息的跟进，可以考虑以下做法：将本页加入浏览器书签或收藏夹；留意页面中出现的更新日期标识（目前页面版本基于 2025 年初的资料整理）；如果后续有新的场馆细节或赛程调整，会以卡片或注释的方式补充。无需重复搜索，直接回到这里即可。</p>
+  <p>另外，页面中涉及的卡片分类和人群划分也会根据实际反馈微调，以保持信息结构的实用性。</p>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-summary">
+    <h3 style="border-bottom: none; margin-top: 0; padding-bottom: 0.2rem;">FAQ 摘要</h3>
+    <details>
+      <summary>页面内容多久更新一次？</summary>
+      <div class="answer">没有固定周期，但会在重要节点（如抽签、赛程公布、场馆变更）前后做一次内容核对。</div>
+    </details>
+    <details>
+      <summary>为什么强调“再次访问”？</summary>
+      <div class="answer">很多用户会在不同时间段回头查看相同赛事的信息。我们希望每次回来都能快速找到之前关注过的卡片和条目，减少重复阅读的负担。</div>
+    </details>
+    <details>
+      <summary>信息卡片会增减吗？</summary>
+      <div class="answer">会。随着筹备推进，可能增加“交通与住宿”“文化活动”等卡片，也会合并使用率较低的类别。</div>
+    </details>
+    <details>
+      <summary>如何提供反馈？</summary>
+      <div class="answer">目前没有单独的反馈表单，你可以通过页面底部的联系线索（若有）或直接向相关运营渠道留言。</div>
+    </details>
+  </div>
+
+  <!-- 底部：简单脚注 -->
+  <div class="footnote">
+    <span>信息整理 · 世界杯</span>
+    <span style="font-size: 0.82rem; opacity: 0.6;">种子参考: bb5d91bf6d7a521f</span>
+  </div>
+</div>
+</body>
+</html>
